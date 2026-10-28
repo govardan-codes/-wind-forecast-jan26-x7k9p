@@ -1,0 +1,14 @@
+# Render blueprint for the API. Deploy the frontend separately on Vercel (root dir: frontend)
+# with VITE_API_URL set to this service's URL.
+services:
+  - type: web
+    name: gridbricks-wind-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATA_SOURCE
+        value: elexon
+      - key: CORS_ORIGINS
+        value: https://YOUR-FRONTEND.vercel.app
